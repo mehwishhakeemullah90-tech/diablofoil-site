@@ -126,10 +126,11 @@ $$('.ba').forEach(ba => {
 });
 
 
-/* ---- A8. Services page: highlight the section you're reading in the side index ---- */
-const indexLinks = $$('.svc-index a');
+/* ---- A8. Services page: highlight the section you're reading in the side index ----
+   Each index link opens the service's own page; data-section names the block it matches here. */
+const indexLinks = $$('.svc-index a[data-section]');
 if (indexLinks.length && 'IntersectionObserver' in window) {
-  const byId = Object.fromEntries(indexLinks.map(a => [a.hash.slice(1), a]));
+  const byId = Object.fromEntries(indexLinks.map(a => [a.dataset.section, a]));
   const io = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -312,7 +313,7 @@ if (window.gsap && window.ScrollTrigger && !reduceMotion) {
   /* B2. Inner page headers: title lines rise, background drifts */
   if ($('.page-head')) {
     gsap.from('.page-head .reveal > span', { yPercent: 105, duration: 1.1, ease: 'expo.out', stagger: .1, delay: .1 });
-    gsap.from('.page-head .lede, .page-head .crumbs', { opacity: 0, y: 16, duration: 1, delay: .4 });
+    gsap.from('.page-head .lede, .page-head .crumbs, .page-head .kicker, .page-head .ctas', { opacity: 0, y: 16, duration: 1, delay: .4 });
     gsap.to('.page-head .bg img', { yPercent: 12, ease: 'none',
       scrollTrigger: { trigger: '.page-head', start: 'top top', end: 'bottom top', scrub: true } });
   }
@@ -391,6 +392,12 @@ if (window.gsap && window.ScrollTrigger && !reduceMotion) {
       start: 'top 92%', once: true,
       onEnter: items => gsap.to(items, { opacity: 1, y: 0, duration: .9, ease: 'expo.out', stagger: .07 })
     });
+  }
+
+  /* B10. Service pages: benefit cards rise in one after another */
+  if ($('.benefits')) {
+    gsap.from('.benefit', { opacity: 0, y: 40, duration: .9, ease: 'expo.out', stagger: .1,
+      scrollTrigger: { trigger: '.benefits', start: 'top 85%', once: true } });
   }
 
   // photos load after the script runs; re-measure pin lengths once they're in
