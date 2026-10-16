@@ -39,7 +39,7 @@
     </nav>
     <div class="nav-right">
       <!-- Arabic and Russian versions stay on the current WordPress site -->
-      <div class="lang" aria-label="Language">
+      <div class="lang" role="group" aria-label="Language">
         <a href="index.html" aria-current="true">EN</a>
         <a href="https://diablofoil.ae/ar/" lang="ar" hreflang="ar">عربي</a>
         <a href="https://diablofoil.ae/ru/" lang="ru" hreflang="ru">RU</a>
@@ -101,9 +101,9 @@
     <!-- Quote form: sends via WhatsApp or email (the site has no form backend). See assets/js/main.js, section A10. -->
     <form class="quote-form" id="quoteForm" novalidate>
       <h2 class="display h3">Request a quote</h2>
-      <div class="field"><label for="fName">Your name <span class="req" aria-hidden="true">*</span></label><input id="fName" name="name" autocomplete="name" required aria-describedby="eName"><span class="err" id="eName"></span></div>
+      <div class="field"><label for="fName">Your name <span class="req" aria-hidden="true">*</span></label><input type="text" id="fName" name="name" autocomplete="name" required aria-describedby="eName"><span class="err" id="eName"></span></div>
       <div class="field"><label for="fPhone">Phone or WhatsApp number <span class="req" aria-hidden="true">*</span></label><input id="fPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+971" required aria-describedby="ePhone"><span class="err" id="ePhone"></span></div>
-      <div class="field"><label for="fCar">Car make &amp; model</label><input id="fCar" name="car" placeholder="e.g. Porsche 911"></div>
+      <div class="field"><label for="fCar">Car make &amp; model</label><input type="text" id="fCar" name="car" placeholder="e.g. Porsche 911"></div>
       <div class="field"><label for="fService">Service <span class="req" aria-hidden="true">*</span></label>
         <select id="fService" name="service" required aria-describedby="eService">
           <option value="">Choose a service</option>
